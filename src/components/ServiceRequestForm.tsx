@@ -9,7 +9,6 @@ interface ServiceRequestFormProps {
   onSubmit: (data: any) => void;
   isSubmitting?: boolean;
   error?: string | null;
-  language?: string;
 }
 
 export default function ServiceRequestForm({
@@ -17,8 +16,7 @@ export default function ServiceRequestForm({
   onClose,
   onSubmit,
   isSubmitting = false,
-  error = null,
-  language = 'he'
+  error = null
 }: ServiceRequestFormProps) {
   const [formData, setFormData] = useState({
     name: '',
@@ -27,7 +25,7 @@ export default function ServiceRequestForm({
     description: ''
   });
 
-  const t = translations[language as keyof typeof translations];
+  const t = translations['he'];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

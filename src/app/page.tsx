@@ -13,7 +13,6 @@ export default function Home() {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [currentLanguage, setCurrentLanguage] = useState('he');
 
   const t = translations['he'];
 
