@@ -45,7 +45,7 @@ export const categories: Category[] = [
         id: 'leak',
         title: 'תיקון נזילות',
         description: 'איתור ותיקון נזילות מים',
-        icon: 'WaterIcon',
+        icon: 'ArrowPathIcon',
         category: 'plumbing'
       },
       {
@@ -109,20 +109,20 @@ export const categories: Category[] = [
   {
     id: 'garden',
     name: 'גינון',
-    icon: 'LeafIcon',
+    icon: 'SparklesIcon',
     services: [
       {
         id: 'garden-maintenance',
         title: 'תחזוקת גינה',
         description: 'גיזום, דישון וטיפול בגינה',
-        icon: 'LeafIcon',
+        icon: 'SparklesIcon',
         category: 'garden'
       },
       {
         id: 'irrigation',
         title: 'מערכת השקיה',
         description: 'תחזוקה ותיקון מערכות השקיה',
-        icon: 'WaterIcon',
+        icon: 'ArrowPathIcon',
         category: 'garden'
       },
       {
