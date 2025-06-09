@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ServiceCard from '../components/ServiceCard';
 import ServiceRequestForm from '../components/ServiceRequestForm';
-import LanguageSelector from '../components/LanguageSelector';
 import { categories } from '../data/services';
 import { translations } from '../i18n/translations';
 import { sendToTelegram } from '../services/telegram';
@@ -16,7 +15,7 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [currentLanguage, setCurrentLanguage] = useState('he');
 
-  const t = translations[currentLanguage as keyof typeof translations];
+  const t = translations['he'];
 
   const handleSubmit = async (formData: any) => {
     setIsSubmitting(true);
@@ -58,10 +57,6 @@ export default function Home() {
               {t.subtitle}
             </motion.p>
           </div>
-          <LanguageSelector
-            currentLanguage={currentLanguage}
-            onLanguageChange={setCurrentLanguage}
-          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -95,7 +90,6 @@ export default function Home() {
               onSubmit={handleSubmit}
               isSubmitting={isSubmitting}
               error={error}
-              language={currentLanguage}
             />
           )}
         </AnimatePresence>
