@@ -24,11 +24,34 @@ export default function ServiceRequestForm({
     address: '',
     description: ''
   });
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   const t = translations['he'];
 
+  const validate = () => {
+    if (!/^[א-תa-zA-Z ]{2,}$/.test(formData.name)) {
+      return 'יש להזין שם מלא בעברית או אנגלית (לפחות 2 תווים).';
+    }
+    if (!/^05\d{8}$/.test(formData.phone)) {
+      return 'יש להזין מספר טלפון ישראלי תקין (10 ספרות, מתחיל ב-05).';
+    }
+    if (!formData.address || formData.address.length < 4) {
+      return 'יש להזין כתובת (לפחות 4 תווים).';
+    }
+    if (!formData.description || formData.description.length < 5) {
+      return 'יש להזין תיאור הבעיה (לפחות 5 תווים).';
+    }
+    return null;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const err = validate();
+    if (err) {
+      setValidationError(err);
+      return;
+    }
+    setValidationError(null);
     onSubmit(formData);
   };
 
@@ -64,6 +87,8 @@ export default function ServiceRequestForm({
               value={formData.name}
               onChange={handleChange}
               disabled={isSubmitting}
+              pattern="^[א-תa-zA-Z ]{2,}$"
+              title="יש להזין שם מלא בעברית או אנגלית (לפחות 2 תווים)."
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
           </div>
@@ -80,6 +105,8 @@ export default function ServiceRequestForm({
               value={formData.phone}
               onChange={handleChange}
               disabled={isSubmitting}
+              pattern="^05\d{8}$"
+              title="יש להזין מספר טלפון ישראלי תקין (10 ספרות, מתחיל ב-05)."
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
           </div>
@@ -93,9 +120,11 @@ export default function ServiceRequestForm({
               id="address"
               name="address"
               required
+              minLength={4}
               value={formData.address}
               onChange={handleChange}
               disabled={isSubmitting}
+              title="יש להזין כתובת (לפחות 4 תווים)."
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
           </div>
@@ -108,13 +137,19 @@ export default function ServiceRequestForm({
               id="description"
               name="description"
               required
+              minLength={5}
               value={formData.description}
               onChange={handleChange}
               disabled={isSubmitting}
               rows={4}
+              title="יש להזין תיאור הבעיה (לפחות 5 תווים)."
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             />
           </div>
+
+          {validationError && (
+            <div className="text-red-600 text-sm">{validationError}</div>
+          )}
 
           {error && (
             <div className="text-red-600 text-sm">{error}</div>

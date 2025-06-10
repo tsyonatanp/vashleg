@@ -103,6 +103,13 @@ export const categories: Category[] = [
         description: 'התקנה ותחזוקת מצלמות אבטחה',
         icon: 'VideoCameraIcon',
         category: 'electrical'
+      },
+      {
+        id: 'ev-charging',
+        title: 'התקנת עמדת טעינה לרכב חשמלי',
+        description: 'התקנה מקצועית של עמדות טעינה לרכב חשמלי',
+        icon: 'BoltIcon',
+        category: 'electrical'
       }
     ]
   },
